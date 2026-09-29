@@ -178,6 +178,37 @@ generator
     | другий `next` | від паузи до другого `yield` | `"Розетка"` |
     | третій `next` | від паузи до кінця тіла | `StopIteration` → значення за замовчуванням |
 
+    Покроково: генератор щоразу зупиняється на `yield` і продовжує з того самого місця:
+
+    ```mermaid
+    flowchart TD
+        classDef step     fill:#eceff1,stroke:#546e7a,stroke-width:1px;
+        classDef decision fill:#e3f2fd,stroke:#1565c0,stroke-width:2px;
+        classDef success  fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
+        classDef error    fill:#ffebee,stroke:#c62828,stroke-width:3px;
+        classDef warning  fill:#fff8e1,stroke:#e65100,stroke-width:2px;
+
+        G["feed = ticker()<br>тіло ще не виконувалось"]
+        subgraph N1["next №1"]
+            direction LR
+            P1["print('старт')"] --> Y1["yield 'Нафтогаз'<br>пауза"]
+        end
+        subgraph N2["next №2"]
+            direction LR
+            P2["print('продовжуємо')"] --> Y2["yield 'Розетка'<br>пауза"]
+        end
+        subgraph N3["next №3"]
+            direction LR
+            P3["print('кінець')"] --> Y3["кінець тіла<br>StopIteration"]
+        end
+        G --> N1 --> N2 --> N3
+
+        class G step
+        class P1,P2,P3 step
+        class Y1,Y2 warning
+        class Y3 error
+    ```
+
 Генератор — це ітератор: його можна передати в `for`, `list()`, `sum()`, і він так само одноразовий.
 
 ## Нескінченний потік угод
@@ -568,7 +599,7 @@ raw = [None, 98.6, 37.0, None, 101.3, 36.6, 212.0, None, 40.1]
 ### Що далі
 
 - Ноутбук заняття: [`lesson_10_transactions_streaming.ipynb`](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_10_iterators_generators/lesson_10_transactions_streaming.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_10_iterators_generators/lesson_10_transactions_streaming.ipynb) — клас-ітератор і генератор угод, запис і потокове читання NDJSON / CSV, конвеєр з VWAP по всіх компаніях.
-- Додаткова практика: [`note_lesson_10_iterators_generators.ipynb`](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_10_iterators_generators/note_lesson_10_iterators_generators.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_10_iterators_generators/note_lesson_10_iterators_generators.ipynb) — конвеєр з генераторів на 500 000 замовлень ресторану з виміром пам'яті.
+- Додаткова практика: [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_10_iterators_generators/note_lesson_10_iterators_generators_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_10_iterators_generators/note_lesson_10_iterators_generators.ipynb){ .solutions-link } — конвеєр з генераторів на 500 000 замовлень ресторану з виміром пам'яті.
 - Живий потік: Dash-застосунок [`transactions_dash`](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/tree/main/module_1/lessons/lesson_10_iterators_generators/transactions_dash) — нескінченний генератор угод на графіках у реальному часі. Запускається на своєму комп'ютері: `pip install dash plotly`, потім `python app.py`.
 - Наступне заняття: [Практикум 2. Пошук](lesson_11.md). Дані, які вже лежать у пам'яті, можна обробляти розумніше, ніж перебором.
 
@@ -576,7 +607,7 @@ raw = [None, 98.6, 37.0, None, 101.3, 36.6, 212.0, None, 40.1]
 
 - Туторіал: [ітератори](https://docs.python.org/3/tutorial/classes.html#iterators), [генератори](https://docs.python.org/3/tutorial/classes.html#generators), [генераторні вирази](https://docs.python.org/3/tutorial/classes.html#generator-expressions)
 - Глосарій: [iterable](https://docs.python.org/3/glossary.html#term-iterable), [iterator](https://docs.python.org/3/glossary.html#term-iterator), [generator](https://docs.python.org/3/glossary.html#term-generator), [generator expression](https://docs.python.org/3/glossary.html#term-generator-expression)
-- Функції: [`iter()`](https://docs.python.org/3/builtins/functions.html#iter), [`next()`](https://docs.python.org/3/builtins/functions.html#next); модуль [`itertools`](https://docs.python.org/3/library/itertools.html): [`islice`](https://docs.python.org/3/library/itertools.html#itertools.islice), [`chain`](https://docs.python.org/3/library/itertools.html#itertools.chain), [`count`](https://docs.python.org/3/library/itertools.html#itertools.count)
+- Функції: [`iter()`](https://docs.python.org/3/library/functions.html#iter), [`next()`](https://docs.python.org/3/library/functions.html#next); модуль [`itertools`](https://docs.python.org/3/library/itertools.html): [`islice`](https://docs.python.org/3/library/itertools.html#itertools.islice), [`chain`](https://docs.python.org/3/library/itertools.html#itertools.chain), [`count`](https://docs.python.org/3/library/itertools.html#itertools.count)
 - Довідник мови: [вираз `yield`](https://docs.python.org/3/reference/expressions.html#yield-expressions); [PEP 255 — прості генератори](https://peps.python.org/pep-0255/), [PEP 289 — генераторні вирази](https://peps.python.org/pep-0289/)
 - Для охочих:
     - Dave Beazley, [«Generator Tricks for Systems Programmers»](https://www.dabeaz.com/generators/) — класичний туторіал про конвеєри з генераторів для логів і файлів ([код і слайди на GitHub](https://github.com/dabeaz/generators));

@@ -19,9 +19,9 @@
 
 **Задача розділу.** Чотири задачі диспетчера таксі, для кожної — повільне і швидке рішення. Одну розберемо в тексті, решту дослідиш у лабораторії.
 
-**Ноутбук заняття:** [`note_lesson_08_big_o.ipynb`](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_08_practicum_big_o/note_lesson_08_big_o.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_08_practicum_big_o/note_lesson_08_big_o.ipynb)
+**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_08_practicum_big_o/note_lesson_08_big_o_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_08_practicum_big_o/note_lesson_08_big_o.ipynb){ .solutions-link }
 
-**Лабораторія:** [`lab_lesson_08_taxi_big_o.ipynb`](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_08_practicum_big_o/lab_lesson_08_taxi_big_o.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_08_practicum_big_o/lab_lesson_08_taxi_big_o.ipynb)
+**Лабораторія:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_08_practicum_big_o/lab_lesson_08_taxi_big_o_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_08_practicum_big_o/lab_lesson_08_taxi_big_o.ipynb){ .solutions-link }
 
 ## Пригадай
 
@@ -152,6 +152,47 @@ print(has_duplicate_ids_fast([1, 2, 3, 4]))
 | `1` | `2`, `3` | 2 |
 | `2` | `3` | 1 |
 | `3` | — | 0 |
+
+Кожна пара — один крок. Покроково для `[1, 2, 3, 4]` (порівнюються номери на позиціях `i` і `j`):
+
+```mermaid
+flowchart TD
+    classDef step     fill:#eceff1,stroke:#546e7a,stroke-width:1px;
+    classDef decision fill:#e3f2fd,stroke:#1565c0,stroke-width:2px;
+    classDef success  fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
+    classDef error    fill:#ffebee,stroke:#c62828,stroke-width:3px;
+    classDef warning  fill:#fff8e1,stroke:#e65100,stroke-width:2px;
+
+    subgraph I0["i = 0 · номер 1"]
+        direction LR
+        A1["1 = 2?"] --> A2["1 = 3?"] --> A3["1 = 4?"] --> AS["кроків: 3"]
+    end
+    subgraph I1["i = 1 · номер 2"]
+        direction LR
+        B1["2 = 3?"] --> B2["2 = 4?"] --> BS["кроків: 5"]
+    end
+    subgraph I2["i = 2 · номер 3"]
+        direction LR
+        C1["3 = 4?"] --> CS["кроків: 6"]
+    end
+    subgraph I3["i = 3 · номер 4"]
+        direction LR
+        D1["пар праворуч немає"] --> DS["кроків: 6"]
+    end
+    I0 --> I1 --> I2 --> I3 --> R["(False, 6)"]
+    subgraph FAST["швидка: один прохід з множиною"]
+        direction LR
+        F1["1 in seen? ні"] --> F2["2 in seen? ні"] --> F3["3 in seen? ні"] --> F4["4 in seen? ні"] --> FR["(False, 4)"]
+    end
+    R ~~~ FAST
+
+    class A1,A2,A3,B1,B2,C1,F1,F2,F3,F4 warning
+    class AS,BS,CS,DS,D1 step
+    class R error
+    class FR success
+```
+
+У повільній функції кожен наступний номер порівнюється з усіма правішими — «трикутник» пар. У швидкій кожен номер перевіряється рівно один раз.
 
 Разом `3 + 2 + 1 = 6`. Для n номерів це `(n − 1) + (n − 2) + … + 1 = n·(n − 1) / 2` порівнянь. Швидка функція робить рівно n кроків — по одному на номер.
 
@@ -533,7 +574,7 @@ def fragment_e(data):
 
 ### Лабораторія: таксі
 
-У ноутбуці [`lab_lesson_08_taxi_big_o.ipynb`](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_08_practicum_big_o/lab_lesson_08_taxi_big_o.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_08_practicum_big_o/lab_lesson_08_taxi_big_o.ipynb) — чотири задачі диспетчера:
+У ноутбуці [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_08_practicum_big_o/lab_lesson_08_taxi_big_o_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_08_practicum_big_o/lab_lesson_08_taxi_big_o.ipynb){ .solutions-link } — чотири задачі диспетчера:
 
 1. повторний номер поїздки;
 2. водії двох змін;
@@ -613,14 +654,14 @@ caesar_encode("xyz", 3) → 'abc'
 
 ### Що далі
 
-- Ноутбук заняття: [`note_lesson_08_big_o.ipynb`](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_08_practicum_big_o/note_lesson_08_big_o.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_08_practicum_big_o/note_lesson_08_big_o.ipynb) — FizzBuzz, паліндром, шифр Цезаря з перевірками.
-- Лабораторія: [`lab_lesson_08_taxi_big_o.ipynb`](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_08_practicum_big_o/lab_lesson_08_taxi_big_o.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_08_practicum_big_o/lab_lesson_08_taxi_big_o.ipynb) — чотири задачі диспетчера, дослід подвоєння, «місто росте».
+- Ноутбук заняття: [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_08_practicum_big_o/note_lesson_08_big_o_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_08_practicum_big_o/note_lesson_08_big_o.ipynb){ .solutions-link } — FizzBuzz, паліндром, шифр Цезаря з перевірками.
+- Лабораторія: [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_08_practicum_big_o/lab_lesson_08_taxi_big_o_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_08_practicum_big_o/lab_lesson_08_taxi_big_o.ipynb){ .solutions-link } — чотири задачі диспетчера, дослід подвоєння, «місто росте».
 - Довідник: [Python Helper Toolkit](../../reference/python_core/introspection_debug_tools.md) — вбудовані функції, якими зручно досліджувати код.
 - Наступний урок: [Урок 9. Декоратори](lesson_09.md). Лінію «скільки роботи» продовжить [Практикум 2. Пошук](lesson_11.md): як використати властивості даних, наприклад відсортованість, щоб робити ще менше кроків.
 
 ## Документація і джерела
 
-- Python: [складність операцій `list`, `set`, `dict`](https://wiki.python.org/moin/TimeComplexity), [множини в туторіалі](https://docs.python.org/3/tutorial/datastructures.html#sets), [тип `set`](https://docs.python.org/3/builtins/stdtypes.html#set-types-set-frozenset), [`time.perf_counter()`](https://docs.python.org/3/library/time.html#time.perf_counter)
+- Python: [складність операцій `list`, `set`, `dict`](https://wiki.python.org/moin/TimeComplexity), [множини в туторіалі](https://docs.python.org/3/tutorial/datastructures.html#sets), [тип `set`](https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset), [`time.perf_counter()`](https://docs.python.org/3/library/time.html#time.perf_counter)
 - Для охочих — як цю тему пояснюють відомі курси:
     - MIT 6.0001, [лекція 10 «Understanding Program Efficiency»](https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/resources/lecture-10-understanding-program-efficiency-part-1/): секундомір, підрахунок операцій і порядок росту;
     - Harvard CS50, [тиждень 3 «Algorithms»](https://cs50.harvard.edu/x/weeks/3/): лінійний і бінарний пошук, `O` та `Ω`;

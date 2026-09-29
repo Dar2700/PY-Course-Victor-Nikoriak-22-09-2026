@@ -20,7 +20,7 @@
 
 **Задача розділу.** Аналітика кафе: виторг, кількість чеків і середній чек **для кожного дня**, найприбутковіший день, чеки за прийомом їжі. Повний звіт розберемо в розділі [«Практика»](#practice).
 
-**Ноутбук заняття:** [`note_lesson_06_dicts_loops_comprehensions.ipynb`](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_06_dicts_loops_comprehensions/note_lesson_06_dicts_loops_comprehensions.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_06_dicts_loops_comprehensions/note_lesson_06_dicts_loops_comprehensions.ipynb)
+**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_06_dicts_loops_comprehensions/note_lesson_06_dicts_loops_comprehensions_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_06_dicts_loops_comprehensions/note_lesson_06_dicts_loops_comprehensions.ipynb){ .solutions-link }
 
 ## Пригадай
 
@@ -357,6 +357,43 @@ flowchart TD
 | 3 | `"сб"` — новий ключ | `{'пт': 2, 'сб': 1}` |
 | 4 | `"сб"` | `{'пт': 2, 'сб': 2}` |
 | 5 | `"нд"` — новий ключ | `{'пт': 2, 'сб': 2, 'нд': 1}` |
+
+Покроково — жовтим позначено створення нового ключа, зеленим — збільшення лічильника:
+
+```mermaid
+flowchart TD
+    classDef step     fill:#eceff1,stroke:#546e7a,stroke-width:1px;
+    classDef decision fill:#e3f2fd,stroke:#1565c0,stroke-width:2px;
+    classDef success  fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
+    classDef error    fill:#ffebee,stroke:#c62828,stroke-width:3px;
+    classDef warning  fill:#fff8e1,stroke:#e65100,stroke-width:2px;
+
+    subgraph O1["чек 1 · пт"]
+        direction LR
+        Q1{"'пт' є?<br>ні"} --> N1["'пт': 0"] --> A1["{'пт': 1}"]
+    end
+    subgraph O2["чек 2 · пт"]
+        direction LR
+        Q2{"'пт' є?<br>так"} --> A2["{'пт': 2}"]
+    end
+    subgraph O3["чек 3 · сб"]
+        direction LR
+        Q3{"'сб' є?<br>ні"} --> N3["'сб': 0"] --> A3["{'пт': 2, 'сб': 1}"]
+    end
+    subgraph O4["чек 4 · сб"]
+        direction LR
+        Q4{"'сб' є?<br>так"} --> A4["{'пт': 2, 'сб': 2}"]
+    end
+    subgraph O5["чек 5 · нд"]
+        direction LR
+        Q5{"'нд' є?<br>ні"} --> N5["'нд': 0"] --> A5["{'пт': 2, 'сб': 2, 'нд': 1}"]
+    end
+    O1 --> O2 --> O3 --> O4 --> O5
+
+    class Q1,Q2,Q3,Q4,Q5 decision
+    class N1,N3,N5 warning
+    class A1,A2,A3,A4,A5 success
+```
 
 Ту саму логіку записують одним рядком через `.get()`: «візьми поточне значення або 0, додай 1, запиши назад».
 
@@ -752,7 +789,7 @@ grades = [
 
 ### Що далі
 
-- Ноутбук заняття: [`note_lesson_06_dicts_loops_comprehensions.ipynb`](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_06_dicts_loops_comprehensions/note_lesson_06_dicts_loops_comprehensions.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_06_dicts_loops_comprehensions/note_lesson_06_dicts_loops_comprehensions.ipynb) — вправи й аналітика на реальному наборі з 244 чеків.
+- Ноутбук заняття: [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_06_dicts_loops_comprehensions/note_lesson_06_dicts_loops_comprehensions_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_06_dicts_loops_comprehensions/note_lesson_06_dicts_loops_comprehensions.ipynb){ .solutions-link } — вправи й аналітика на реальному наборі з 244 чеків.
 - Додатковий конспект: [`notes_loops_dicts_comprehensions.ipynb`](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_06_dicts_loops_comprehensions/notes_loops_dicts_comprehensions.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_06_dicts_loops_comprehensions/notes_loops_dicts_comprehensions.ipynb)
 - Довідник: [Словники (dict)](../../reference/python_core/dicts.md).
 - Наступний урок: [Урок 7. Функції](lesson_07.md). Звіт кафе вже працює, але це один довгий блок коду. Навчимося розкладати програму на функції з іменами.
@@ -760,7 +797,7 @@ grades = [
 ## Документація
 
 - Туторіал: [`for`](https://docs.python.org/3/tutorial/controlflow.html#for-statements), [`range()`](https://docs.python.org/3/tutorial/controlflow.html#the-range-function), [словники](https://docs.python.org/3/tutorial/datastructures.html#dictionaries), [прийоми перебору](https://docs.python.org/3/tutorial/datastructures.html#looping-techniques), [list comprehensions](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions), [вкладені comprehensions](https://docs.python.org/3/tutorial/datastructures.html#nested-list-comprehensions)
-- Словник: [тип `dict`](https://docs.python.org/3/builtins/stdtypes.html#mapping-types-dict), [`dict.get()`](https://docs.python.org/3/builtins/stdtypes.html#dict.get), [`dict.setdefault()`](https://docs.python.org/3/builtins/stdtypes.html#dict.setdefault), [`dict.items()`](https://docs.python.org/3/builtins/stdtypes.html#dict.items)
-- Функції: [`range`](https://docs.python.org/3/builtins/functions.html#func-range), [`enumerate()`](https://docs.python.org/3/builtins/functions.html#enumerate), [`max()`](https://docs.python.org/3/builtins/functions.html#max)
+- Словник: [тип `dict`](https://docs.python.org/3/library/stdtypes.html#mapping-types-dict), [`dict.get()`](https://docs.python.org/3/library/stdtypes.html#dict.get), [`dict.setdefault()`](https://docs.python.org/3/library/stdtypes.html#dict.setdefault), [`dict.items()`](https://docs.python.org/3/library/stdtypes.html#dict.items)
+- Функції: [`range`](https://docs.python.org/3/library/functions.html#func-range), [`enumerate()`](https://docs.python.org/3/library/functions.html#enumerate), [`max()`](https://docs.python.org/3/library/functions.html#max)
 - Інструкції: [`for`](https://docs.python.org/3/reference/compound_stmts.html#the-for-statement)
 - Модуль `collections`: [`Counter`](https://docs.python.org/3/library/collections.html#collections.Counter), [`defaultdict`](https://docs.python.org/3/library/collections.html#collections.defaultdict)

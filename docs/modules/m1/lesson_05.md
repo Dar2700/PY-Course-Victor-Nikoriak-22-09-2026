@@ -21,7 +21,7 @@
 
 **Задача розділу.** Кафе закриває день. Програма має зберегти позиції замовлень і всі чеки дня, а потім відповісти на запитання власника: скільки чеків, який виторг, який найбільший чек, у які дні працювали, які гості приходили двічі. Повну програму розберемо в розділі [«Практика»](#practice).
 
-**Ноутбук заняття:** [`note_lesson_05_lists_tuples_sets.ipynb`](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_05_lists_tuples_sets/note_lesson_05_lists_tuples_sets.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_05_lists_tuples_sets/note_lesson_05_lists_tuples_sets.ipynb)
+**Ноутбук заняття:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_05_lists_tuples_sets/note_lesson_05_lists_tuples_sets_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_05_lists_tuples_sets/note_lesson_05_lists_tuples_sets.ipynb){ .solutions-link }
 
 ## Пригадай
 
@@ -511,6 +511,43 @@ print("Найбільший чек:", max_bill)
 | `3` | `760.0` — не більше | `980.0` |
 | `4` | `450.0` — не більше | `980.0` |
 
+Та сама таблиця покроково — помаранчевим позначено порівняння, зеленим — оновлення максимуму:
+
+```mermaid
+flowchart TD
+    classDef step     fill:#eceff1,stroke:#546e7a,stroke-width:1px;
+    classDef decision fill:#e3f2fd,stroke:#1565c0,stroke-width:2px;
+    classDef success  fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
+    classDef error    fill:#ffebee,stroke:#c62828,stroke-width:3px;
+    classDef warning  fill:#fff8e1,stroke:#e65100,stroke-width:2px;
+
+    S["старт<br>max_bill = 540.0 (чек 0)"]
+    subgraph I1["i = 1"]
+        direction LR
+        C1{"320.0 > 540.0?"} -- ні --> K1["max_bill = 540.0"]
+    end
+    subgraph I2["i = 2"]
+        direction LR
+        C2{"980.0 > 540.0?"} -- так --> U2["max_bill = 980.0"]
+    end
+    subgraph I3["i = 3"]
+        direction LR
+        C3{"760.0 > 980.0?"} -- ні --> K3["max_bill = 980.0"]
+    end
+    subgraph I4["i = 4"]
+        direction LR
+        C4{"450.0 > 980.0?"} -- ні --> K4["max_bill = 980.0"]
+    end
+    S --> I1 --> I2 --> I3 --> I4 --> E["i = 5: 5 < 5 — ні<br>Найбільший чек: 980.0"]
+
+    class S step
+    class C1,C2,C3,C4 warning
+    class K1,K3,K4 step
+    class U2,E success
+```
+
+Максимум змінився лише один раз — на чеку 2. Усі інші кроки лише підтверджують, що більшого не знайшлося.
+
 Цикл починається з `i = 1`, бо чек 0 уже взято як стартовий максимум. Чому стартують з першого елемента, а не з `0`? Якби всі чеки були від'ємні (наприклад, повернення коштів), нуль став би «максимумом», якого немає в даних.
 
 ## Множина: лише унікальні значення
@@ -769,7 +806,7 @@ Git: 3 учасники
 
 Усі групи відкривають той самий ноутбук і розв'язують свою перевірку. Каса дає підказку на типову помилку, а за правильну відповідь показує частину чайових у гривнях. Групи називають суми викладачу, він вписує їх у клітинку «Закриття зміни» — і всі дізнаються, скільки отримає Тарас. Удома ноутбук можна пройти самостійно, усі чотири перевірки.
 
-**Ноутбук квесту:** [`cafe_shift_quest.ipynb`](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_05_lists_tuples_sets/cafe_shift_quest.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_05_lists_tuples_sets/cafe_shift_quest.ipynb)
+**Ноутбук квесту:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_05_lists_tuples_sets/cafe_shift_quest_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_05_lists_tuples_sets/cafe_shift_quest.ipynb){ .solutions-link }
 
 ## Підсумок
 
@@ -809,8 +846,8 @@ Git: 3 учасники
 
 ### Що далі
 
-- Ноутбук заняття: [`note_lesson_05_lists_tuples_sets.ipynb`](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_05_lists_tuples_sets/note_lesson_05_lists_tuples_sets.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_05_lists_tuples_sets/note_lesson_05_lists_tuples_sets.ipynb) — ті самі ідеї на реальному наборі з 244 чеків.
-- Квест для груп: [`cafe_shift_quest.ipynb`](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_05_lists_tuples_sets/cafe_shift_quest.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_05_lists_tuples_sets/cafe_shift_quest.ipynb) — вечірня зміна в кафе, список, кортеж, `NamedTuple` і множини в одній грі.
+- Ноутбук заняття: [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_05_lists_tuples_sets/note_lesson_05_lists_tuples_sets_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_05_lists_tuples_sets/note_lesson_05_lists_tuples_sets.ipynb){ .solutions-link } — ті самі ідеї на реальному наборі з 244 чеків.
+- Квест для груп: [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_05_lists_tuples_sets/cafe_shift_quest_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_05_lists_tuples_sets/cafe_shift_quest.ipynb){ .solutions-link } — вечірня зміна в кафе, список, кортеж, `NamedTuple` і множини в одній грі.
 - Додатковий конспект з вправами: [`notes_lists_tuples_sets.ipynb`](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_05_lists_tuples_sets/notes_lists_tuples_sets.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_05_lists_tuples_sets/notes_lists_tuples_sets.ipynb)
 - Довідник: [Списки](../../reference/python_core/lists.md), [Кортежі й `NamedTuple`](../../reference/python_core/tuples.md), [Множини](../../reference/python_core/sets.md).
 - Наступний урок: [Урок 6. Словники, for, comprehensions](lesson_06.md). Цикл `while` з індексом стане коротшим завдяки `for`, а словник дозволить рахувати, наприклад, виторг окремо для кожного дня.
@@ -818,6 +855,6 @@ Git: 3 учасники
 ## Документація
 
 - Туторіал: [списки](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists), [кортежі й послідовності](https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences), [множини](https://docs.python.org/3/tutorial/datastructures.html#sets)
-- Вбудовані типи: [послідовності `list`, `tuple`](https://docs.python.org/3/builtins/stdtypes.html#sequence-types-list-tuple-range), [спільні операції послідовностей](https://docs.python.org/3/builtins/stdtypes.html#common-sequence-operations), [операції, що змінюють список](https://docs.python.org/3/builtins/stdtypes.html#mutable-sequence-types), [множини `set`](https://docs.python.org/3/builtins/stdtypes.html#set-types-set-frozenset)
-- Функції: [`len()`](https://docs.python.org/3/builtins/functions.html#len), [`sorted()`](https://docs.python.org/3/builtins/functions.html#sorted), [`typing.NamedTuple`](https://docs.python.org/3/library/typing.html#typing.NamedTuple)
+- Вбудовані типи: [послідовності `list`, `tuple`](https://docs.python.org/3/library/stdtypes.html#sequence-types-list-tuple-range), [спільні операції послідовностей](https://docs.python.org/3/library/stdtypes.html#common-sequence-operations), [операції, що змінюють список](https://docs.python.org/3/library/stdtypes.html#mutable-sequence-types), [множини `set`](https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset)
+- Функції: [`len()`](https://docs.python.org/3/library/functions.html#len), [`sorted()`](https://docs.python.org/3/library/functions.html#sorted), [`typing.NamedTuple`](https://docs.python.org/3/library/typing.html#typing.NamedTuple)
 - Глосарій: [mutable](https://docs.python.org/3/glossary.html#term-mutable), [immutable](https://docs.python.org/3/glossary.html#term-immutable), [hashable](https://docs.python.org/3/glossary.html#term-hashable)

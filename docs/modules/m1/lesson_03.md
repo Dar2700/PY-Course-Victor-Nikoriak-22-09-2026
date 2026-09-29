@@ -446,7 +446,7 @@ d
 
 На склад приїхала коробка без зворотної адреси. Склад відкриє її, лише коли кожен із чотирьох відділів перевірить свою частину даних і поставить **пломбу**. Якщо хоч один відділ помилиться, коробка лишиться закритою.
 
-**Ноутбук:** [`nova_poshta_parcel.ipynb`](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_03_variables_and_data_types/nova_poshta_parcel.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_03_variables_and_data_types/nova_poshta_parcel.ipynb)
+**Ноутбук:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_03_variables_and_data_types/nova_poshta_parcel_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_03_variables_and_data_types/nova_poshta_parcel.ipynb){ .solutions-link }
 
 | Група | Відділ | Про що задача |
 |---|---|---|
@@ -455,7 +455,7 @@ d
 | 3 | Логістика | обчислення ціни, де важливий порядок операцій |
 | 4 | Відправлення | назва міста прийшла кодами символів — прочитати її через `chr()` |
 
-**Як це проходить на занятті.** Усі групи відкривають **той самий** ноутбук і розв'язують свій відділ. За правильну відповідь система видає двоцифровий код пломби, за типову помилку — підказку. Лідер групи називає код викладачу, а викладач вписує чотири коди в клітинку «Склад» на проєкторі. Інтернет-сервіси не потрібні, і нічиї імена ніде не зберігаються. Удома той самий ноутбук можна пройти самостійно — усі чотири відділи по черзі.
+**Як це проходить на занятті.** Усі групи відкривають **той самий** ноутбук і розв'язують свій відділ. За правильну відповідь система видає двоцифровий код пломби, за типову помилку — підказку. Лідер групи називає код викладачу, а викладач вписує чотири коди в клітинку «Склад» на проєкторі. Для самої гри інтернет-сервіси не потрібні, і нічиї імена ніде не зберігаються. Коли всі чотири пломби правильні, коробка відкривається, а в ній — кнопка «📚 Матеріали уроку» з посиланням на папку з матеріалами в Google Drive. Удома той самий ноутбук можна пройти самостійно — усі чотири відділи по черзі.
 
 Кожна задача проходить той самий шлях даних:
 
@@ -557,12 +557,15 @@ price = 45.5
 
 **Спробуйте самі — де практикуватись:** [`note_lesson_variables.ipynb`](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_03_variables_and_data_types/note_lesson_variables.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_03_variables_and_data_types/note_lesson_variables.ipynb) — передбачення з перевіркою на кожному кроці, тест на розуміння перетворення типів і міні-проєкт «Нова Пошта».
 
+**Довідник-практикум методів:** [Відкрити вправи в Colab](https://colab.research.google.com/github/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_03_variables_and_data_types/str_int_float_methods_student.ipynb){ .md-button .md-button--primary } [Переглянути розв’язки](https://github.com/NikoriakViktot/PY-Course-Victor-Nikoriak-22-09-2026/blob/main/module_1/lessons/lesson_03_variables_and_data_types/str_int_float_methods.ipynb){ .solutions-link } — f-рядки й форматування чисел (`f"{x:.2f}"`, ширина, вирівнювання), індекси й зрізи, найуживаніші методи `str`, операції й функції для `int` і `float`, безпечне перетворення типів; 7 вправ з перевірками.
+
 ## Документація
 
 - [Іменування і зв'язування (naming and binding)](https://docs.python.org/3/reference/executionmodel.html#naming-and-binding)
 - [Ідентифікатори](https://docs.python.org/3/reference/lexical_analysis.html#identifiers) і [ключові слова](https://docs.python.org/3/reference/lexical_analysis.html#keywords)
-- [Вбудовані типи](https://docs.python.org/3/builtins/stdtypes.html): [числові типи](https://docs.python.org/3/builtins/stdtypes.html#numeric-types-int-float-complex), [рядки `str`](https://docs.python.org/3/builtins/stdtypes.html#text-sequence-type-str), [`None`](https://docs.python.org/3/builtins/constants.html#None)
-- Вбудовані функції: [`type()`](https://docs.python.org/3/builtins/functions.html#type), [`int()`](https://docs.python.org/3/builtins/functions.html#int), [`id()`](https://docs.python.org/3/builtins/functions.html#id), [`ord()`](https://docs.python.org/3/builtins/functions.html#ord), [`chr()`](https://docs.python.org/3/builtins/functions.html#chr)
+- [Вбудовані типи](https://docs.python.org/3/library/stdtypes.html): [числові типи](https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex), [рядки `str`](https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str), [`None`](https://docs.python.org/3/library/constants.html#None)
+- [Методи рядків](https://docs.python.org/3/library/stdtypes.html#string-methods), [f-рядки](https://docs.python.org/3/reference/lexical_analysis.html#f-strings), [міні-мова форматування](https://docs.python.org/3/library/string.html#formatspec), [`math.isclose`](https://docs.python.org/3/library/math.html#math.isclose)
+- Вбудовані функції: [`type()`](https://docs.python.org/3/library/functions.html#type), [`int()`](https://docs.python.org/3/library/functions.html#int), [`id()`](https://docs.python.org/3/library/functions.html#id), [`ord()`](https://docs.python.org/3/library/functions.html#ord), [`chr()`](https://docs.python.org/3/library/functions.html#chr)
 - [Арифметичні оператори](https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations) і [пріоритет операторів](https://docs.python.org/3/reference/expressions.html#operator-precedence)
 - Глосарій: [immutable](https://docs.python.org/3/glossary.html#term-immutable), [duck-typing](https://docs.python.org/3/glossary.html#term-duck-typing)
 - [PEP 8 — іменування](https://peps.python.org/pep-0008/#naming-conventions), [PEP 20 — Zen of Python](https://peps.python.org/pep-0020/)
